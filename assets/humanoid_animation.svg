@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="200">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap');
+    
+    .robot-container {
+      animation: runIn 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    
+    @keyframes runIn {
+      0% { transform: translateX(-150px) translateY(100px); }
+      70% { transform: translateX(350px) translateY(100px); }
+      100% { transform: translateX(350px) translateY(100px); }
+    }
+    
+    .running {
+      animation: hideAfterRun 3s forwards;
+    }
+    
+    .standing {
+      opacity: 0;
+      animation: showAfterRun 3s forwards;
+    }
+    
+    @keyframes hideAfterRun {
+      0%, 69% { opacity: 1; }
+      70%, 100% { opacity: 0; }
+    }
+    
+    @keyframes showAfterRun {
+      0%, 69% { opacity: 0; }
+      70%, 100% { opacity: 1; }
+    }
+    
+    .bubble {
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: center bottom;
+      animation: popBubble 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3.2s forwards;
+    }
+    
+    @keyframes popBubble {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .wave {
+      transform-origin: 45px 35px;
+      animation: waveHand 0.8s ease-in-out infinite alternate;
+      animation-delay: 3s;
+    }
+
+    @keyframes waveHand {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(25deg); }
+    }
+    
+    .pixel-text {
+      font-family: 'Press Start 2P', Courier, monospace;
+      font-size: 14px;
+      fill: #202136;
+      font-weight: bold;
+    }
+    
+    /* Colors inspired by HajimeOS */
+    .suit { fill: #E0E5EC; }
+    .suit-shadow { fill: #A3B1C6; }
+    .visor { fill: #00D2FF; }
+    .visor-glow { fill: #FFFFFF; }
+    .accent { fill: #D95A40; }
+    .dark { fill: #2A2C46; }
+    .outline { stroke: #1A1A2E; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .bubble-bg { fill: #FFF7E6; stroke: #C19A6C; stroke-width: 4; }
+  </style>
+
+  <g class="robot-container">
+    
+    <!-- Speech Bubble -->
+    <g class="bubble" transform="translate(60, -90)">
+      <path d="M 0 0 L 110 0 L 110 45 L 70 45 L 50 65 L 60 45 L 0 45 Z" class="bubble-bg" />
+      <text x="12" y="28" class="pixel-text">Hajime!</text>
+    </g>
+
+    <!-- RUNNING STATE -->
+    <g class="running">
+      <!-- Right Arm (Back) -->
+      <path d="M 25 35 L 45 40 L 40 55" class="suit outline" />
+      
+      <!-- Right Leg (Back) -->
+      <path d="M 25 65 L 40 75 L 30 85" class="suit outline" />
+
+      <!-- Body -->
+      <rect x="15" y="30" width="26" height="35" rx="8" class="suit outline" />
+      <!-- Belt/Accent -->
+      <rect x="15" y="55" width="26" height="10" rx="3" class="accent outline" />
+
+      <!-- Head -->
+      <rect x="10" y="0" width="36" height="32" rx="16" class="suit outline" />
+      <rect x="18" y="8" width="28" height="16" rx="8" class="dark outline" />
+      <rect x="20" y="10" width="24" height="12" rx="6" class="visor" />
+      <!-- Visor reflection -->
+      <path d="M 22 12 Q 32 12 40 18 L 22 18 Z" class="visor-glow" opacity="0.6" />
+      
+      <!-- Earpiece -->
+      <circle cx="10" cy="16" r="6" class="accent outline" />
+
+      <!-- Left Leg (Front) -->
+      <path d="M 20 65 L 10 75 L 20 85" class="suit outline" />
+
+      <!-- Left Arm (Front) -->
+      <path d="M 20 35 L 5 45 L 15 55" class="suit outline" />
+      <!-- Shoulder pad -->
+      <path d="M 15 30 Q 20 25 25 30" class="accent outline" fill="none"/>
+    </g>
+    
+    <!-- STANDING & WAVING STATE -->
+    <g class="standing">
+      <!-- Right Leg -->
+      <rect x="28" y="65" width="10" height="20" rx="4" class="suit outline" />
+      <!-- Left Leg -->
+      <rect x="16" y="65" width="10" height="20" rx="4" class="suit outline" />
+
+      <!-- Body -->
+      <rect x="14" y="30" width="28" height="35" rx="8" class="suit outline" />
+      <rect x="14" y="55" width="28" height="10" rx="3" class="accent outline" />
+
+      <!-- Left Arm (Down) -->
+      <path d="M 18 35 L 8 45 L 12 60" class="suit outline" />
+      
+      <!-- Right Arm (Waving) -->
+      <g class="wave">
+        <path d="M 38 35 L 50 20 L 60 25" class="suit outline" />
+        <circle cx="60" cy="25" r="5" class="suit outline" />
+      </g>
+
+      <!-- Head -->
+      <rect x="10" y="0" width="36" height="32" rx="16" class="suit outline" />
+      <rect x="18" y="8" width="28" height="16" rx="8" class="dark outline" />
+      <rect x="20" y="10" width="24" height="12" rx="6" class="visor" />
+      <path d="M 22 12 Q 32 12 40 18 L 22 18 Z" class="visor-glow" opacity="0.6" />
+      <circle cx="10" cy="16" r="6" class="accent outline" />
+    </g>
+
+  </g>
+</svg>
